@@ -1,0 +1,49 @@
+﻿<Window x:Class="BookReader.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BookReader"
+        xmlns:wv2="clr-namespace:Microsoft.Web.WebView2.Wpf;assembly=Microsoft.Web.WebView2.Wpf"
+        mc:Ignorable="d"
+        Title="BookReader" Height="900" Width="1600"
+        ResizeMode="NoResize"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        Background="{DynamicResource MaterialDesignPaper}"
+        TextElement.FontWeight="Medium"
+        TextElement.FontSize="14"
+        FontFamily="{materialDesign:MaterialDesignFont}"
+        Icon="/icon.png">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="8*"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Orientation="Vertical"
+                    Grid.Column="0">
+            <materialDesign:PackIcon Kind="BookOpenBlankVariant"
+                                     HorizontalAlignment="Center"
+                                     Height="250"
+                                     Width="250"
+                                     Foreground="#673AB7"/>
+            <Button x:Name="FileOpenButton"
+                    Content="Открыть файл"
+                    Width="250"
+                    Margin="0 24 0 0"
+                    HorizontalAlignment="Center"
+                    Click="FileOpenButton_Click"/>
+            <Label x:Name="RecentPdfsLabel"
+                   Content="Открытые ранее файлы"
+                   HorizontalAlignment="Center"
+                   Margin=" 0 24 0 0"/>
+            <ComboBox x:Name="RecentPdfs"
+                      Width="250"
+                      HorizontalAlignment="Center" 
+                      SelectionChanged="RecentPdfs_SelectionChanged">
+            </ComboBox>
+        </StackPanel>
+        <wv2:WebView2 Name="PdfView"
+                      Grid.Column="1"/>
+    </Grid>
+</Window>
