@@ -19,7 +19,6 @@ namespace BookReader
             RecentPdfsLabel.Visibility = Visibility.Collapsed;
             RecentPdfs.Visibility = Visibility.Collapsed;
         }
-
         private void FileOpenButton_Click(object sender, RoutedEventArgs e)
         {
             OpenFileDialog openFileDialog = new()
@@ -38,10 +37,12 @@ namespace BookReader
                 {
                     MessageBox.Show("Такой файл уже был добавлен, вы его можете открыть из списка");
                 }
-                RecentPdfs.ItemsSource = files.Keys;
             }
-            RecentPdfs.Visibility = Visibility.Visible;
-            RecentPdfsLabel.Visibility = Visibility.Visible;
+            if (!files.IsEmpty)
+            {
+                RecentPdfs.Visibility = Visibility.Visible;
+                RecentPdfsLabel.Visibility = Visibility.Visible;
+            }
         }
         private void RecentPdfs_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
